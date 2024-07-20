@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Or use fetch
 import './App.css'; // Add this import
 
 import Data from "./output.json"
@@ -156,9 +155,5 @@ function easeOutCuaic(t) {
   );
 }
 
-// Add this function to handle gallery clicks
-const handleGalleryClick = (selectedGallery) => {
-  // Update state or props to display the selected gallery's images
-};
 
 export default App;
