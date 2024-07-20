@@ -7,7 +7,7 @@ import Data from "./Test_output.json"
 import { slide as Menu } from 'react-burger-menu'
 
 
-var PathToImages= "IMG"
+var PathToImages= "my-gallery-app/IMG"
 function App() {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
