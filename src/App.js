@@ -6,6 +6,7 @@ var PathToImages= "Img"
 function App() {
   const [galleries, setGalleries] = useState([]); 
   const [selectedGallery, setSelectedGallery] = useState(null); 
+  const [showGalleryList, setShowGalleryList] = useState(true); // New state for showing/hiding gallery list
   useEffect(() => {
     
     // Fetch data from output.json
@@ -19,13 +20,22 @@ function App() {
   return (
     <div>
       {/* Render the gallery list */}
-      <h1>My Galleries</h1>
-      <ul>
-        {Object.keys(galleries).map((galleryName) => (
-          <li key={galleryName}>
-            <button onClick={() => setSelectedGallery(galleryName)}> {galleryName}</button>           </li>
-        ))}
-      </ul>
+      <button onClick={() => setShowGalleryList(!showGalleryList)}>
+        {showGalleryList ? 'Hide Galleries' : 'Show Galleries'}
+      </button> 
+
+      {showGalleryList && ( // Conditional rendering of the gallery list
+        <div className="gallery-list">
+          <h1>My Galleries</h1>
+          <ul>
+            {Object.keys(galleries).map((galleryName) => (
+              <li key={galleryName}>
+                <button onClick={() => setSelectedGallery(galleryName)}> {galleryName}</button> 
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {selectedGallery && (
         <div>
