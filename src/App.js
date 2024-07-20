@@ -105,7 +105,7 @@ function easeOutCuaic(t) {
           <ul>
             {filteredGalleries.map((galleryName) => (
               <li key={galleryName} className="menu-item">
-                <button onClick={() => setSelectedGallery(galleryName)}> {galleryName}</button> 
+                <button onClick={() => {setSelectedGallery(galleryName) ; setCurrentPage(1)}}> {galleryName}</button> 
               </li>
             ))}
           </ul>
