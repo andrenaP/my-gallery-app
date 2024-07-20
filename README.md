@@ -1,6 +1,6 @@
 # Simple Image Gallery with Pagination
 
-This is a simple image gallery application that allows users to browse through images, navigate using pagination, and search by category. 
+This is a simple image gallery application that allows users to browse through images, navigate using pagination, and search by name of galleries. 
 
 
 **Features:**
