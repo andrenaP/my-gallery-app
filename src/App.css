@@ -107,3 +107,36 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+
+/* Plagination */
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  border: none;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.pagination select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+

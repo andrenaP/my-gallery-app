@@ -19,6 +19,7 @@ function App() {
   // const [showGalleryList, setShowGalleryList] = useState(true);
   const [displayedImages, setDisplayedImages] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1); // New state for current page number
   const imagesPerPage = 10;
 
   useEffect(() => {
@@ -26,9 +27,9 @@ function App() {
     // Fetch data from output.json
         setGalleries(Data);
         if (selectedGallery) {
-          setDisplayedImages(galleries[selectedGallery].slice(0, imagesPerPage));
+          setDisplayedImages(galleries[selectedGallery].slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage));
         }
-  }, [selectedGallery, galleries]);
+  }, [selectedGallery, galleries, currentPage]);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -40,6 +41,23 @@ function App() {
     });
     setIsLoadingMore(false); // Turn off loading indicator
   };
+
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleJumpToPage = (event) => {
+    setCurrentPage(parseInt(event.target.value));
+  };
+
+  
 
   return (
     <div>
@@ -68,12 +86,27 @@ function App() {
             ))}
 
             {/* Load More Button */}
-            {!isLoadingMore && displayedImages.length < galleries[selectedGallery].length && (
+            {/* {!isLoadingMore && displayedImages.length < galleries[selectedGallery].length && (
               <button onClick={handleLoadMore}>Load More</button>
-            )} 
+            )}  */}
+
 
             {isLoadingMore && <p>Loading more images...</p>}
           </div>
+
+          {selectedGallery && (
+        <div className="pagination">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+          <select value={currentPage} onChange={handleJumpToPage}>
+            {/* Calculate number of pages based on total images */}
+            {[...Array(Math.ceil(galleries[selectedGallery].length / imagesPerPage)).keys()].map((page) => (
+              <option key={page + 1} value={page + 1}>{page + 1}</option>
+            ))}
+          </select>
+          <button onClick={handleNextPage} disabled={currentPage === Math.ceil(galleries[selectedGallery].length / imagesPerPage)}>Next</button>
+        </div>
+      )}
+
         </div>
       )}
 
