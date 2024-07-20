@@ -119,7 +119,7 @@ function easeOutCuaic(t) {
           <div className="image-container">
             {/* Display the images */}
             {displayedImages.map((imageUrl, index) => (
-              <img key={index} src={PathToImages+"/"+selectedGallery+"/"+imageUrl} alt={`l${index + 1}`} loading="lazy" />
+              <img key={index} src={PathToImages+"/"+selectedGallery+"/"+imageUrl} alt={`${imageUrl}-${index}`} loading="lazy" />
             ))}
 
      
