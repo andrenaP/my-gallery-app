@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './App.css'; // Add this import
 
 //import Data from "./Test_output.json"
-
-
-
-
 import { slide as Menu } from 'react-burger-menu'
+import axios from 'axios'; // Or use fetch
 var Data
 
+
+
+
+
+
 if(process.env.REACT_APP_JsonFolder)
-  Data = await import(process.env.REACT_APP_JsonFolder); 
+  Data = process.env.REACT_APP_JsonFolder
 else
- Data = await import("./Test_output.json");
+ Data = 'Test_output.json'
+
+
+ ;
 
 const MainUrl=window.location.href;
 
@@ -34,14 +39,20 @@ function App() {
   const fast = 100;
 
   useEffect(() => {
+
+    axios.get(Data) // Replace with your file path
+    .then(response => {
+      setGalleries(response.data);
+    })
+    .catch(error => console.error('Error fetching data:', error));
     
     // Fetch data from output.json
-       var CleardDAta =  Data.default;
-        setGalleries(CleardDAta);
+      //  var CleardDAta =  Data.default;
+        // setGalleries(CleardDAta);
         if (selectedGallery) {
           setDisplayedImages(galleries[selectedGallery].slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage));
         }
-        console.log(CleardDAta);
+        // console.log(CleardDAta);
         const searchTerm = filteredString.toLowerCase();
         const filteredGalleriesSerchFunk = Object.keys(galleries).filter((gallery) => 
           gallery.toLowerCase().includes(searchTerm)
