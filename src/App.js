@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Add this import
 
-import Data from "./Test_output.json"
+//import Data from "./Test_output.json"
+
+
 
 
 import { slide as Menu } from 'react-burger-menu'
+var Data
 
+if(process.env.REACT_APP_JsonFolder)
+  Data = await import(process.env.REACT_APP_JsonFolder); 
+else
+ Data = await import("./Test_output.json");
 
-var PathToImages= "IMG"
+const MainUrl=window.location.href;
+
+var PathToImages
+if (process.env.REACT_APP_Folder)
+   PathToImages=MainUrl+"/"+ process.env.REACT_APP_Folder;
+else
+ PathToImages=MainUrl+"/IMG";
+
 function App() {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
@@ -22,11 +36,12 @@ function App() {
   useEffect(() => {
     
     // Fetch data from output.json
-        setGalleries(Data);
+       var CleardDAta =  Data.default;
+        setGalleries(CleardDAta);
         if (selectedGallery) {
           setDisplayedImages(galleries[selectedGallery].slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage));
         }
-
+        console.log(CleardDAta);
         const searchTerm = filteredString.toLowerCase();
         const filteredGalleriesSerchFunk = Object.keys(galleries).filter((gallery) => 
           gallery.toLowerCase().includes(searchTerm)

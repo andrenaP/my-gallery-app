@@ -10,6 +10,7 @@
 
 # production
 /build
+.env
 
 # misc
 .DS_Store
@@ -23,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 public/Img
 src/output.json
+.env
