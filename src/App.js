@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Or use fetch
+import './App.css'; // Add this import
 
 import Data from "./output.json"
 var PathToImages= "Img"
