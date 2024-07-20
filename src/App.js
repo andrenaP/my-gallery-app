@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Or use fetch
 
 import Data from "./output.json"
-var PathToImages= "Imgz"
+var PathToImages= "Img"
 function App() {
   const [galleries, setGalleries] = useState([]); 
   const [selectedGallery, setSelectedGallery] = useState(null); 
