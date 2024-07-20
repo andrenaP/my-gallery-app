@@ -4,28 +4,17 @@ import './App.css'; // Add this import
 //import Data from "./Test_output.json"
 import { slide as Menu } from 'react-burger-menu'
 import axios from 'axios'; // Or use fetch
-var Data
 
 
 
 
 
 
-if(process.env.REACT_APP_JsonFolder)
-  Data = process.env.REACT_APP_JsonFolder
-else
- Data = 'Test_output.json'
 
 
- ;
-
+var Data = process.env.REACT_APP_JsonFolder
 const MainUrl=window.location.href;
-
-var PathToImages
-if (process.env.REACT_APP_Folder)
-   PathToImages=MainUrl+"/"+ process.env.REACT_APP_Folder;
-else
- PathToImages=MainUrl+"/IMG";
+var PathToImages=MainUrl+"/"+ process.env.REACT_APP_Folder;
 
 function App() {
   const [galleries, setGalleries] = useState([]);
