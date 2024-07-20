@@ -142,3 +142,31 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 
+
+
+/* ... existing styles ... */
+
+#mySearch {
+  padding: 10px;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding and border in total width/height */
+  max-width: 200px; /* Adjust as needed for desired input width */
+  margin: 10px auto; /* Center horizontally */
+}
+
+#mySearch::placeholder {
+  color: #999; /* Gray placeholder text */
+}
+
+#mySearch:focus {
+  border-color: #666; /* Darker gray border on focus */
+  outline: none; /* Remove default browser focus outline */
+}
+
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}

@@ -18,6 +18,8 @@ function App() {
   // const [showGalleryList, setShowGalleryList] = useState(true);
   const [displayedImages, setDisplayedImages] = useState([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [filteredGalleries, setfilteredGalleries] = useState([]);
+  const [filteredString, setfilteredString] = useState("");
   const [currentPage, setCurrentPage] = useState(1); // New state for current page number
   const imagesPerPage = 10;
   const fast = 100;
@@ -30,7 +32,14 @@ function App() {
         if (selectedGallery) {
           setDisplayedImages(galleries[selectedGallery].slice((currentPage - 1) * imagesPerPage, currentPage * imagesPerPage));
         }
-  }, [selectedGallery, galleries, currentPage]);
+
+        const searchTerm = filteredString.toLowerCase();
+        const filteredGalleriesSerchFunk = Object.keys(galleries).filter((gallery) => 
+          gallery.toLowerCase().includes(searchTerm)
+        );
+
+        setfilteredGalleries(filteredGalleriesSerchFunk);
+  }, [selectedGallery, galleries, currentPage, filteredString]);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -98,6 +107,9 @@ function easeOutCuaic(t) {
     scrollTo(0, fast);
   };
 
+  const SearchFunction = (event) => {
+    setfilteredString(event.target.value);
+  };
   
 
   return (
@@ -106,8 +118,9 @@ function easeOutCuaic(t) {
       <Menu>
         <div className="gallery-list">
           <h1 >My Galleries</h1>
+          <input type="text" id="mySearch" placeholder="Search.." title="Type in a category" onChange={SearchFunction}/>
           <ul>
-            {Object.keys(galleries).map((galleryName) => (
+            {filteredGalleries.map((galleryName) => (
               <li key={galleryName} className="menu-item">
                 <button onClick={() => setSelectedGallery(galleryName)}> {galleryName}</button> 
               </li>
