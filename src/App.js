@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Or use fetch
 
+import Data from "./output.json"
+var PathToImages= "Imgz"
 function App() {
+  const [galleries, setGalleries] = useState([]); 
+  const [selectedGallery, setSelectedGallery] = useState(null); 
+  useEffect(() => {
+    
+    // Fetch data from output.json
+    //axios.get(Data) // Replace with your file path
+     // .then(response => {
+        setGalleries(Data);
+      //})
+     // .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* Render the gallery list */}
+      <h1>My Galleries</h1>
+      <ul>
+        {Object.keys(galleries).map((galleryName) => (
+          <li key={galleryName}>
+            <button onClick={() => setSelectedGallery(galleryName)}> {galleryName}</button>           </li>
+        ))}
+      </ul>
+
+      {selectedGallery && (
+        <div>
+          <h2>{selectedGallery} Images</h2>
+          {galleries[selectedGallery].map((imageUrl, index) => (
+            <img key={index} src={PathToImages+"/"+selectedGallery+"/"+imageUrl} alt={`Image ${index + 1}`} />
+          ))}
+        </div>
+      )}
+
     </div>
   );
 }
+
+// Add this function to handle gallery clicks
+const handleGalleryClick = (selectedGallery) => {
+  // Update state or props to display the selected gallery's images
+};
 
 export default App;
