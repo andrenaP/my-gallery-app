@@ -23,6 +23,14 @@ This is a simple image gallery application that allows users to browse through i
     ```bash
     npm install
     ```
+    
+3.  **Add environment variables:**
+
+    Create a `.env` file and fill it. Use `.env.example`
+    ```bash
+    REACT_APP_Folder="IMG"
+    REACT_APP_JsonFolder="Test_output.json"
+    ```
 
 3.  **Run the application:**
 
@@ -32,7 +40,7 @@ This is a simple image gallery application that allows users to browse through i
 
 **Data Source:**
 
-The image gallery fetches data from a `output.json` file in the project's `src` directory. You can update this file with your own image data.
+The image gallery fetches data from a `output.json` file in the project's `public` directory. You can update this file with your own image data.
 
 You also need to provide your data in public folder.
 
@@ -40,7 +48,7 @@ You also need to provide your data in public folder.
 
 To populate the gallery, you'll need to provide image data in JSON format. 
 
-You can easily generate this JSON using the provided `gallery.sh` script. Simply run script on your folders with images:
+You can easily generate this JSON from your folders with images using the provided `gallery.sh` script. Simply run script on your folders:
 
 ```bash
 ./gallery.sh
