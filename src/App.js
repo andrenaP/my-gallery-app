@@ -21,6 +21,8 @@ function App() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1); // New state for current page number
   const imagesPerPage = 10;
+  const fast = 100;
+  const slow = 13000;
 
   useEffect(() => {
     
@@ -43,18 +45,58 @@ function App() {
   };
 
 
+  // Element to move + duration in milliseconds
+function scrollTo(element, duration) {
+  var e = document.documentElement;
+  if (e.scrollTop === 0) {
+    var t = e.scrollTop;
+    ++e.scrollTop;
+    e = t + 1 === e.scrollTop-- ? e : document.body;
+  }
+  scrollToC(e, e.scrollTop, element, duration);
+}
+// Element to move, element or px from, element or px to, time in ms to animate
+function scrollToC(element, from, to, duration) {
+  if (duration <= 0) return;
+  if (typeof from === "object") from = from.offsetTop;
+  if (typeof to === "object") to = to.offsetTop;
+
+  scrollToX(element, from, to, 0, 1 / duration, 20, easeOutCuaic);
+}
+function scrollToX(element, xFrom, xTo, t01, speed, step, motion) {
+  if (t01 < 0 || t01 > 1 || speed <= 0) {
+    element.scrollTop = xTo;
+    return;
+  }
+  element.scrollTop = xFrom - (xFrom - xTo) * motion(t01);
+  t01 += speed * step;
+
+  setTimeout(function() {
+    scrollToX(element, xFrom, xTo, t01, speed, step, motion);
+  }, step);
+}
+function easeOutCuaic(t) {
+  t--;
+  return t * t * t + 1;
+}
+
+
+
   const handleNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
+    scrollTo(0, fast);
   };
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
+      scrollTo(0, fast);
     }
   };
 
   const handleJumpToPage = (event) => {
     setCurrentPage(parseInt(event.target.value));
+    scrollTo(0, fast);
   };
 
   

@@ -6,6 +6,8 @@ body {
 
 h1, h2 {
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 .gallery-list ul {
@@ -111,11 +113,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Plagination */
 .pagination {
-  text-align: center;
-  margin-top: 20px;
+  position: fixed;
+  bottom: 20px; /* Adjust this value for desired spacing */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
   display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
 .pagination button {
