@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Add this import
 
-import Data from "./output.json"
+import Data from "./Test_output.json"
 
 
 import { slide as Menu } from 'react-burger-menu'
 
-class Example extends React.Component {
-  showSettings (event) {
-    event.preventDefault();
-  }
-}
-var PathToImages= "Img"
+
+var PathToImages= "IMG"
 function App() {
   const [galleries, setGalleries] = useState([]);
   const [selectedGallery, setSelectedGallery] = useState(null);
   // const [showGalleryList, setShowGalleryList] = useState(true);
   const [displayedImages, setDisplayedImages] = useState([]);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [filteredGalleries, setfilteredGalleries] = useState([]);
   const [filteredString, setfilteredString] = useState("");
   const [currentPage, setCurrentPage] = useState(1); // New state for current page number
   const imagesPerPage = 10;
   const fast = 100;
-  const slow = 13000;
 
   useEffect(() => {
     
@@ -40,17 +34,6 @@ function App() {
 
         setfilteredGalleries(filteredGalleriesSerchFunk);
   }, [selectedGallery, galleries, currentPage, filteredString]);
-
-  const handleLoadMore = () => {
-    setIsLoadingMore(true);
-    // Calculate the start index for the next batch of images
-    const startIndex = displayedImages.length; 
-    const endIndex = startIndex + imagesPerPage;
-    setDisplayedImages((prevImages) => {
-      return [...prevImages, ...galleries[selectedGallery].slice(startIndex, endIndex)];
-    });
-    setIsLoadingMore(false); // Turn off loading indicator
-  };
 
 
   // Element to move + duration in milliseconds
@@ -136,16 +119,13 @@ function easeOutCuaic(t) {
           <div className="image-container">
             {/* Display the images */}
             {displayedImages.map((imageUrl, index) => (
-              <img key={index} src={PathToImages+"/"+selectedGallery+"/"+imageUrl} alt={`Image ${index + 1}`} />
+              <img key={index} src={PathToImages+"/"+selectedGallery+"/"+imageUrl} alt={`l${index + 1}`} loading="lazy" />
             ))}
 
-            {/* Load More Button */}
-            {/* {!isLoadingMore && displayedImages.length < galleries[selectedGallery].length && (
-              <button onClick={handleLoadMore}>Load More</button>
-            )}  */}
+     
 
 
-            {isLoadingMore && <p>Loading more images...</p>}
+           
           </div>
 
           {selectedGallery && (
