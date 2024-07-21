@@ -59,7 +59,7 @@ This script then generates a valid JSON file (`output.json`) that you can use wi
 **Technical Details:**
 
 *   **Framework:** React
-*   **Styling:** CSS (integrated within components)
+*   **Styling:** React-bootstrap 
 *   **Data Format:** JSON
 
 **Contributing:**
