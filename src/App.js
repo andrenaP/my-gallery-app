@@ -27,7 +27,7 @@ function App() {
   const [filteredGalleries, setfilteredGalleries] = useState([]);
   const [filteredString, setfilteredString] = useState('');
   const [currentPage, setCurrentPage] = useState(1); // New state for current page number
-  const imagesPerPage = 2;
+  const imagesPerPage = 1;
   const fast = 100;
 
   useEffect(() => {
@@ -129,6 +129,10 @@ function App() {
                   variant="top"
                   src={PathToImages + '/' + selectedGallery + '/' + imageUrl}
                   alt={`${imageUrl}-${index}`}
+                  onClick={() => {
+                    if (currentPage < galleries[selectedGallery].length)
+                      setCurrentPage(currentPage + 1);
+                  }}
                 />
               </Card>
             ))}
