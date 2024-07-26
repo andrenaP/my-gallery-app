@@ -51,7 +51,7 @@ To populate the gallery, you'll need to provide image data in JSON format.
 You can easily generate this JSON from your folders with images using the provided `gallery.sh` script. Simply run script on your folders:
 
 ```bash
-./gallery.sh
+bash gallery.sh
 ```
 
 This script then generates a valid JSON file (`output.json`) that you can use with the application.
