@@ -34,7 +34,6 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    // Ensure absolute path by prepending "/"
     axios
       .get(`/${JsonFolder}`)
       .then(response => {
@@ -69,7 +68,6 @@ function App() {
           );
         }
       } else {
-        // If gallery doesn't exist, clear images
         setDisplayedImages([]);
       }
     } else {
@@ -168,7 +166,7 @@ function App() {
                   variant="top"
                   src={
                     decodeURIComponent(selectedGallery).includes('/')
-                      ? imageUrl
+                      ? `${process.env.PUBLIC_URL}/${imageUrl}` // Use full path for galleries with "/"
                       : `${PathToImages}/${decodeURIComponent(selectedGallery)}/${imageUrl}`
                   }
                   alt={`${imageUrl}-${index}`}
