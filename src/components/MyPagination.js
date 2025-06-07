@@ -36,12 +36,12 @@ function backToTop() {
   document.documentElement.scrollTop = 0;
 }
 
-const MyPagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
+const MyPagination = ({ itemsPerPage, totalItems, paginate, currentPage,className }) => {
   const numPages = Math.ceil(totalItems / itemsPerPage);
   var rangeWithDots = pagination(currentPage, numPages);
 
   return (
-    <Pagination>
+    <Pagination className={className}>
       {/* Previous Button */}
       <Pagination.Prev
         onClick={() => paginate(currentPage - 1)}

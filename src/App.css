@@ -30,10 +30,19 @@ h2 {
 }
 
 /* Plagination */
-.pagination {
-  position: fixed;
+.pagination-fixed {
+  position: fixed; 
   bottom: 20px; /* Adjust this value for desired spacing */
   left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
+  /* transform: translateX(-50%); Center horizontally */
+  transform: translateX(-50%);
+  /*justify-content: center;
+  display: flex;*/
+
+}
+
+.pagination-normal {
+  /* position:initial; */
+  justify-content: center;
   display: flex;
 }

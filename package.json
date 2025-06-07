@@ -2,7 +2,6 @@
   "name": "my-gallery-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://andrenaP.github.io/my-gallery-app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -13,7 +12,7 @@
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
